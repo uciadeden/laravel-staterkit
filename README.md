@@ -1,5 +1,5 @@
 Halaman menu
-<img src="./public/assets/Screenshot (20).png" alt="Halaman Awal" width="100%" />
+<img src="./public/Screenshot (20).png" alt="Halaman Awal" width="100%" />
 
 Cara Instalasi
 
