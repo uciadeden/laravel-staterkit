@@ -5,29 +5,29 @@ Sistem Prasyarat<br/>
     -Laravel Framework: ^10.10<br/>
 
 Paket yang Dibutuhkan
-Dependensi Utama:
-    Guzzle HTTP Client: ^7.2
-    Laravel AdminLTE: ^3.15
-    Laravel Sanctum: ^3.3
-    Laravel Tinker: ^2.8
-    Laravel UI: ^4.6
-    Spatie Laravel Permission: ^6.17
-    Yajra Laravel Datatables Oracle: ^10.11
+Dependensi Utama:<br/>
+    -Guzzle HTTP Client: ^7.2<br/>
+    -Laravel AdminLTE: ^3.15<br/>
+    -Laravel Sanctum: ^3.3<br/>
+    -Laravel Tinker: ^2.8<br/>
+    -Laravel UI: ^4.6<br/>
+    -Spatie Laravel Permission: ^6.17<br/>
+    -Yajra Laravel Datatables Oracle: ^10.11<br/>
 
-Dependensi Pengembangan:
-    FakerPHP: ^1.9.1
-    Laravel Pint: ^1.0
-    Laravel Sail: ^1.18
-    Mockery: ^1.4.4
-    PHPUnit: ^10.1
-    Spatie Laravel Ignition: ^2.0
+Dependensi Pengembangan:<br/>
+    -FakerPHP: ^1.9.1<br/>
+    -Laravel Pint: ^1.0<br/>
+    -Laravel Sail: ^1.18<br/>
+    -Mockery: ^1.4.4<br/>
+    -PHPUnit: ^10.1<br/>
+    -Spatie Laravel Ignition: ^2.0<br/>
 
-Autoloading
-    PSR-4 Autoloading digunakan untuk folder app/, database/factories/, database/seeders/, dan tests/.
+Autoloading<br/>
+    -PSR-4 Autoloading digunakan untuk folder app/, database/factories/, database/seeders/, dan tests/.<br/>
 
-Konfigurasi Tambahan
-    Autoloader dioptimalkan: Untuk kecepatan lebih baik.
-    Instalasi plugin: Diizinkan untuk pestphp/pest-plugin dan php-http/discovery.
+Konfigurasi Tambahan<br/>
+    -Autoloader dioptimalkan: Untuk kecepatan lebih baik.<br/>
+    -Instalasi plugin: Diizinkan untuk pestphp/pest-plugin dan php-http/discovery.<br/>
 
 Cara Instalasi
 
