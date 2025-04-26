@@ -13,23 +13,23 @@ Perintah ini akan mengunduh semua paket PHP yang dibutuhkan dan menyimpannya di 
 2. Instalasi Dependencies menggunakan npm
 
 Setelah Composer selesai, jalankan perintah berikut untuk menginstal dependensi frontend menggunakan npm:
-
+```bash
 npm install
-
+```
 Perintah ini akan mengunduh dan menginstal semua paket JavaScript yang diperlukan di dalam folder node_modules.
 3. Menyiapkan File Konfigurasi .env
 
 Salin file .env.example ke .env dan sesuaikan dengan konfigurasi sistem Anda. Anda bisa menggunakan perintah berikut untuk menyalin file:
-
+```bash
 cp .env.example .env
-
+```
 Buka file .env dan sesuaikan dengan konfigurasi seperti database, APP_KEY, dan pengaturan lainnya sesuai dengan kebutuhan Anda.
 4. Migrasi Database dan Seeding
 
 Setelah file .env siap, jalankan perintah berikut untuk membuat tabel-tabel database dan mengisi data awal menggunakan seeder:
-
+```bash
 php artisan migrate --seed
-
+```
 Perintah ini akan menjalankan migrasi database dan mengisi data awal (seeder) sesuai dengan yang ada di dalam database.
 5. Pengaturan Menu dan Role Permissions
 
@@ -56,9 +56,9 @@ Buka file database/seeders/UserSeeder.php dan tambahkan akun-akun default untuk 
     Password: password
 
 Setelah itu, jalankan perintah berikut untuk menambahkan user:
-
+```bash
 php artisan db:seed --class=UserSeeder
-
+```
 7. Selesai
 
 Setelah langkah-langkah di atas selesai, aplikasi Anda siap digunakan! Anda dapat mengakses aplikasi di browser dan login menggunakan akun yang telah Anda buat.
