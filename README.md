@@ -5,7 +5,9 @@ Untuk menjalankan proyek ini, pastikan Anda telah menginstal Composer, Node.js, 
 
 Buka terminal Anda dan jalankan perintah berikut untuk menginstal dependensi PHP yang diperlukan:
 
+```bash
 composer install
+```
 
 Perintah ini akan mengunduh semua paket PHP yang dibutuhkan dan menyimpannya di dalam folder vendor.
 2. Instalasi Dependencies menggunakan npm
