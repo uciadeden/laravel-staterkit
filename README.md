@@ -1,8 +1,8 @@
 Halaman menu
 <img src="./public/Screenshot (20).png" alt="Halaman Awal" width="100%" />
-Sistem Prasyarat
-    PHP: ^8.1
-    Laravel Framework: ^10.10
+Sistem Prasyarat<br/>
+    -PHP: ^8.1<br/>
+    -Laravel Framework: ^10.10<br/>
 
 Paket yang Dibutuhkan
 Dependensi Utama:
