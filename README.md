@@ -1,14 +1,15 @@
+Halaman menu
+<img src="assets/Screenshot (20).png" alt="Halaman Awal" width="100%" />
+
 Cara Instalasi
 
 Untuk menjalankan proyek ini, pastikan Anda telah menginstal Composer, Node.js, dan PHP pada sistem Anda. Ikuti langkah-langkah di bawah ini untuk menginstal dan mengonfigurasi proyek dengan benar.
 1. Instalasi Dependencies menggunakan Composer
 
 Buka terminal Anda dan jalankan perintah berikut untuk menginstal dependensi PHP yang diperlukan:
-
 ```bash
 composer install
 ```
-
 Perintah ini akan mengunduh semua paket PHP yang dibutuhkan dan menyimpannya di dalam folder vendor.
 2. Instalasi Dependencies menggunakan npm
 
@@ -24,14 +25,21 @@ Salin file .env.example ke .env dan sesuaikan dengan konfigurasi sistem Anda. An
 cp .env.example .env
 ```
 Buka file .env dan sesuaikan dengan konfigurasi seperti database, APP_KEY, dan pengaturan lainnya sesuai dengan kebutuhan Anda.
-4. Migrasi Database dan Seeding
+4. Generate APP_KEY
 
-Setelah file .env siap, jalankan perintah berikut untuk membuat tabel-tabel database dan mengisi data awal menggunakan seeder:
+Setelah menyiapkan file .env, Anda perlu menghasilkan APP_KEY untuk aplikasi Laravel Anda. Jalankan perintah berikut:
+```bash
+php artisan key:generate
+```
+Perintah ini akan menghasilkan kunci aplikasi unik yang diperlukan untuk enkripsi dan keamanan aplikasi Laravel Anda. Kunci ini akan disimpan di file .env pada baris APP_KEY yang digunakan untuk berbagai fitur keamanan di Laravel, seperti hashing password dan enkripsi data.
+5. Migrasi Database dan Seeding
+
+Setelah file .env siap dan kunci aplikasi sudah digenerate, jalankan perintah berikut untuk membuat tabel-tabel database dan mengisi data awal menggunakan seeder:
 ```bash
 php artisan migrate --seed
 ```
 Perintah ini akan menjalankan migrasi database dan mengisi data awal (seeder) sesuai dengan yang ada di dalam database.
-5. Pengaturan Menu dan Role Permissions
+6. Pengaturan Menu dan Role Permissions
 
 Setelah migrasi selesai, Anda perlu mengatur menu dan role permissions. Ikuti langkah-langkah berikut:
 - Menyiapkan Menu (MenuSeeder)
@@ -40,7 +48,7 @@ Buka file database/seeders/MenuSeeder.php dan tambahkan menu yang ingin Anda bua
 - Menyiapkan Role dan Permissions (RolePermissionSeeder)
 
 Buka file database/seeders/RolePermissionSeeder.php untuk mengatur izin (permissions) untuk setiap menu yang telah Anda buat. Di sini Anda bisa menyesuaikan role yang ada, seperti Admin dan User, dan mengaitkan izin mereka terhadap menu yang sesuai.
-6. Menambahkan Data User Default
+7. Menambahkan Data User Default
 
 Buka file database/seeders/UserSeeder.php dan tambahkan akun-akun default untuk aplikasi Anda. Berikut adalah contoh data user default:
 - Role Admin
@@ -59,6 +67,6 @@ Setelah itu, jalankan perintah berikut untuk menambahkan user:
 ```bash
 php artisan db:seed --class=UserSeeder
 ```
-7. Selesai
+8. Selesai
 
 Setelah langkah-langkah di atas selesai, aplikasi Anda siap digunakan! Anda dapat mengakses aplikasi di browser dan login menggunakan akun yang telah Anda buat.
