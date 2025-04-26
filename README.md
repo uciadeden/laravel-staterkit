@@ -41,27 +41,11 @@ Autoloading
 
     PSR-4 Autoloading digunakan untuk folder app/, database/factories/, database/seeders/, dan tests/.
 
-Skrip Setelah Instalasi
-
-    Setelah autoload dump: Menjalankan php artisan package:discover.
-
-    Setelah pembaruan: Menjalankan php artisan vendor:publish --tag=laravel-assets.
-
-    Setelah instalasi paket: Membuat .env jika belum ada.
-
-    Setelah pembuatan proyek: Menjalankan php artisan key:generate.
-
 Konfigurasi Tambahan
 
     Autoloader dioptimalkan: Untuk kecepatan lebih baik.
 
     Instalasi plugin: Diizinkan untuk pestphp/pest-plugin dan php-http/discovery.
-
-Stabilitas Paket
-
-    Minimum Stability: Stable
-
-    Prefer Stable: true
 
 Cara Instalasi
 
