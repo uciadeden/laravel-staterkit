@@ -1,5 +1,67 @@
 Halaman menu
 <img src="./public/Screenshot (20).png" alt="Halaman Awal" width="100%" />
+Sistem Prasyarat
+
+    PHP: ^8.1
+
+    Laravel Framework: ^10.10
+
+Paket yang Dibutuhkan
+Dependensi Utama:
+
+    Guzzle HTTP Client: ^7.2
+
+    Laravel AdminLTE: ^3.15
+
+    Laravel Sanctum: ^3.3
+
+    Laravel Tinker: ^2.8
+
+    Laravel UI: ^4.6
+
+    Spatie Laravel Permission: ^6.17
+
+    Yajra Laravel Datatables Oracle: ^10.11
+
+Dependensi Pengembangan:
+
+    FakerPHP: ^1.9.1
+
+    Laravel Pint: ^1.0
+
+    Laravel Sail: ^1.18
+
+    Mockery: ^1.4.4
+
+    PHPUnit: ^10.1
+
+    Spatie Laravel Ignition: ^2.0
+
+Autoloading
+
+    PSR-4 Autoloading digunakan untuk folder app/, database/factories/, database/seeders/, dan tests/.
+
+Skrip Setelah Instalasi
+
+    Setelah autoload dump: Menjalankan php artisan package:discover.
+
+    Setelah pembaruan: Menjalankan php artisan vendor:publish --tag=laravel-assets.
+
+    Setelah instalasi paket: Membuat .env jika belum ada.
+
+    Setelah pembuatan proyek: Menjalankan php artisan key:generate.
+
+Konfigurasi Tambahan
+
+    Autoloader dioptimalkan: Untuk kecepatan lebih baik.
+
+    Instalasi plugin: Diizinkan untuk pestphp/pest-plugin dan php-http/discovery.
+
+Stabilitas Paket
+
+    Minimum Stability: Stable
+
+    Prefer Stable: true
 
 Cara Instalasi
 
