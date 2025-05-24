@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 
@@ -25,6 +26,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 Route::get('/penjualan', [App\Http\Controllers\HomeController::class, 'index'])->name('penjualan');
 
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     // Rute yang hanya dapat diakses oleh role Admin
 Route::resource('posts', PostController::class);

@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles; // Import trait HasRoles
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
 
     // public function role()
     // {
@@ -63,4 +64,9 @@ public function menus()
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function adminlte_profile_url()
+{
+    return 'profile'; // atau route('profile.index') kalau pakai named route
+}
 }

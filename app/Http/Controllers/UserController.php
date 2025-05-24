@@ -33,7 +33,7 @@ class UserController extends Controller
         ->addColumn('action', function($row) use($title) {
             $editUrl = route('users.edit', $row->id);
             $deleteUrl = route('users.destroy', $row->id);
-            return view('components.actions', compact('row', 'editUrl', 'deleteUrl', 'title'));
+            return view('components.action-delete', compact('row', 'editUrl', 'deleteUrl', 'title'));
         })
         ->make(true);
     }
@@ -51,8 +51,16 @@ public function store(Request $request)
     $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|string|max:255|unique:users,email', // Validasi email unik
-        'password' => 'required|string|min:6',
+        'password' => 'required|string|min:4',
         'role' => 'required|string|in:Admin,User', // Validasi role hanya bisa "Admin" atau "User"
+    ],[
+        'name.required' => 'Nama wajib diisi.',
+        'email.required' => 'Email/Username wajib diisi.',
+        'email.unique' => 'Email/Username sudah digunakan.',
+        'password.required' => 'Password wajib diisi.',
+        'password.min' => 'Password minimal 4 karakter.',
+        'role.required' => 'Role harus dipilih.',
+        'role.in' => 'Role tidak valid. Pilih Admin atau User.'
     ]);
 
     // Cek apakah email sudah ada
@@ -84,7 +92,7 @@ public function store(Request $request)
             'model_type' => get_class($user), // Menambahkan nama model secara eksplisit
         ]);
         } else if ($request->role == "User") {
-            
+
         // Menambahkan Role ke User dengan menyetel model_type secara manual
             $user->roles()->attach($userRole->id, [
             'model_type' => get_class($user), // Menambahkan nama model secara eksplisit
@@ -135,7 +143,7 @@ public function update(Request $request, User $user)
 public function destroy(User $user)
 {
     // Perbarui kolom updated_by dengan ID pengguna yang sedang login
-    $user->updated_by = Auth::id();  // Menyimpan ID pengguna yang menghapus
+    // $user->updated_by = Auth::id();  // Menyimpan ID pengguna yang menghapus
     $user->save();  // Simpan perubahan
 
     //Delete

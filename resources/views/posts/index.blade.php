@@ -11,7 +11,7 @@
 @can("create $title")
 <button class="btn btn-sm btn-primary mb-2" id="btnAdd">Tambah Data</button>
 @endcan
-<table id="table" class="table table-hover table-sm" style="width: 100%">
+<table id="table" class="table table-hover table-sm responsive nowrap" style="width: 100%">
     <thead>
         <tr>
             <th width="3%">No</th>
@@ -124,8 +124,8 @@
                 // Show SweetAlert2 notification
                 Swal.fire({
 
-                    icon: data.icon,
-                    title: data.title,
+                    icon: response.icon,
+                    title: response.title,
                     text: response.message,
                     showConfirmButton: true,
                     timer: 1500
@@ -135,15 +135,15 @@
                    // Pastikan server mengirimkan JSON error message dengan properti 'message'
                    let errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'Terjadi kesalahan yang tidak diketahui.';
                    
-               Swal.fire({
-                icon: 'error',
-                title: 'Aduhh...',
-                text: errorMessage,
-                showConfirmButton: true,
-                timer: 1500
-            });
-           }
-       });5
+                   Swal.fire({
+                    icon: 'error',
+                    title: 'Aduhh...',
+                    text: errorMessage,
+                    showConfirmButton: true,
+                    timer: 1500
+                });
+               }
+           });5
             });
 
             // Delete Post (Confirmation Modal)
@@ -173,8 +173,8 @@
 
                     // Show success notification with SweetAlert2
                     Swal.fire({
-                        icon: data.icon,
-                        title: data.title,
+                        icon: response.icon,
+                        title: response.title,
                         text: response.message,
                         showConfirmButton: false,
                         timer: 1500

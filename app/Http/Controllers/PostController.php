@@ -52,6 +52,10 @@ public function store(Request $request)
     $request->validate([
         'title' => 'required|string|max:255',
         'content' => 'required|string',
+    ],[
+        'title.required' => 'Judul wajib diisi.',
+        'title.max' => 'Judul maximal 255 Karakter.',
+        'content.required' => 'Konten wajib diisi.'
     ]);
 
     $post = Post::create([
@@ -83,6 +87,10 @@ public function update(Request $request, Post $post)
     $request->validate([
         'title' => 'required|string|max:255',
         'content' => 'required|string',
+    ],[
+        'title.required' => 'Judul wajib diisi.',
+        'title.max' => 'Judul maximal 255 Karakter.',
+        'content.required' => 'Konten wajib diisi.'
     ]);
 
     $post->update([
