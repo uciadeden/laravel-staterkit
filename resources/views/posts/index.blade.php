@@ -39,11 +39,11 @@
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control form-control-sm" id="title" name="title" required>
+                        <input type="text" class="form-control form-control-sm" id="title" name="title">
                     </div>
                     <div class="mb-3">
                         <label for="content" class="form-label">Content</label>
-                        <textarea class="form-control form-control-sm" id="content" name="content" required></textarea>
+                        <textarea class="form-control form-control-sm" id="content" name="content"></textarea>
                     </div>
                     <input type="hidden" id="id"> <!-- Hidden field for edit -->
                     <button type="submit" class="btn btn-sm btn-primary float-right" id="saveBtn">Simpan</button>
@@ -132,18 +132,38 @@
                 });
             },
             error: function(xhr) {
-                   // Pastikan server mengirimkan JSON error message dengan properti 'message'
-                   let errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'Terjadi kesalahan yang tidak diketahui.';
-                   
-                   Swal.fire({
-                    icon: 'error',
-                    title: 'Aduhh...',
-                    text: errorMessage,
-                    showConfirmButton: true,
-                    timer: 1500
-                });
+                    $('.invalid-feedback').remove();
+                    $('.is-invalid').removeClass('is-invalid');
+
+                    if (xhr.status === 422) {
+                        let response = xhr.responseJSON;
+
+                        // Cek apakah ada response.errors (validasi field), atau hanya message umum
+                        if (response.errors) {
+                            $.each(response.errors, function(key, value) {
+                                let input = $('#' + key);
+                                input.addClass('is-invalid');
+                                input.after('<div class="invalid-feedback">' + value[0] + '</div>');
+                            });
+                        } else if (response.message) {
+                            // Pesan error umum (non-field)
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Mengalami kesalahan',
+                                text: response.message,
+                                showConfirmButton: true
+                            });
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Aduhh...',
+                            text: 'Terjadi kesalahan server.',
+                            showConfirmButton: true
+                        });
+                    }
                }
-           });5
+           });
             });
 
             // Delete Post (Confirmation Modal)

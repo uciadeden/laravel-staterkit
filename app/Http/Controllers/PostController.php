@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -47,17 +48,8 @@ public function create()
 }
 
     // Menyimpan post baru
-public function store(Request $request)
+public function store(PostRequest $request)
 {
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'content' => 'required|string',
-    ],[
-        'title.required' => 'Judul wajib diisi.',
-        'title.max' => 'Judul maximal 255 Karakter.',
-        'content.required' => 'Konten wajib diisi.'
-    ]);
-
     $post = Post::create([
         'title' => $request->title,
         'content' => $request->content,
@@ -82,16 +74,12 @@ public function edit(Post $post)
 }
 
     // Menyimpan perubahan post
-public function update(Request $request, Post $post)
+public function update(PostRequest $request, Post $post)
 {
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'content' => 'required|string',
-    ],[
-        'title.required' => 'Judul wajib diisi.',
-        'title.max' => 'Judul maximal 255 Karakter.',
-        'content.required' => 'Konten wajib diisi.'
-    ]);
+    // return response()->json([
+    //     'message' => 'Kamu tidak bisa melanjutkan simpan data ini.'
+    //     ], 422);  Jika ada kondisi
+        // 422 = Unprocessable Entity (validasi gagal)
 
     $post->update([
         'title' => $request->title,

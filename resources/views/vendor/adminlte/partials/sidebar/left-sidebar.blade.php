@@ -29,7 +29,7 @@
             return $role->menus; // Ambil menu dari setiap role
         });
         
-$menus = $menus->unique('id'); // Menggunakan ID menu untuk memastikan keunikan
+        $menus = $menus->unique('id'); // Menggunakan ID menu untuk memastikan keunikan
         $categories = $menus->groupBy('category'); // Kelompokkan menu berdasarkan kategori
         @endphp
 
