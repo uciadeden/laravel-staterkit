@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call(RolePermissionSeeder::class);
 
         // Memanggil Seeder untuk User
-        $this->call(UserSeeder::class);
-
-        // Memanggil Seeder untuk User
         $this->call(MenuSeeder::class);
+        
+        // Memanggil Seeder untuk User
+        $this->call(UserSeeder::class);
     }
 }

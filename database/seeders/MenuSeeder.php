@@ -20,7 +20,7 @@ class MenuSeeder extends Seeder
         $penggunaMenu = Menu::firstOrCreate([
             'name' => 'Pengguna', 
             'url' => '/users', 
-            'icon' => 'fas fa-tachometer-alt',
+            'icon' => 'fas fa-user',
             'category' =>  null
         ]);
 
@@ -36,10 +36,10 @@ class MenuSeeder extends Seeder
         $userRole = Role::firstOrCreate(['name' => 'User']);
 
         // Berikan menu ke role
-        $adminRole->menus()->attach([
+        $adminRole->menus()->syncWithoutDetaching([
         	$dashboardMenu->id, 
         	$penggunaMenu->id,
         ]);
-        $userRole->menus()->attach([$dashboardMenu->id]); // Role 'User' hanya memiliki akses ke dashboard
+        $userRole->menus()->syncWithoutDetaching([$dashboardMenu->id]); // Role 'User' hanya memiliki akses ke dashboard
     }
 }

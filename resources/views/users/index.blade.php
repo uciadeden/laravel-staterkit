@@ -38,19 +38,19 @@
                 <form id="frm">
                     @csrf
                     <div class="mb-3">
-                        <label for="content" class="form-label">Nama</label>
-                        <input type="text" class="form-control form-control-sm" id="name" name="name" required>
+                        <label for="name" class="form-label">Nama</label>
+                        <input type="text" class="form-control form-control-sm" id="name" name="name" required autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <label for="content" class="form-label">Username</label>
-                        <input type="text" class="form-control form-control-sm" id="email" name="email" required>
+                        <label for="email" class="form-label">E-Mail</label>
+                        <input type="email" class="form-control form-control-sm" id="email" name="email" required autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <label for="content" class="form-label">Password</label>
-                        <input type="password" class="form-control form-control-sm" id="password" name="password" required>
+                        <label for="password" class="form-label">Password <small id="passwordHelpBlock" class="form-text text-muted">(kosongkan jika tidak diganti)</small></label>
+                        <input type="password" class="form-control form-control-sm" id="password" name="password" autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <label for="content" class="form-label">Level</label>
+                        <label for="role" class="form-label">Level</label>
                         <div class="clear"></div>
                         <select type="text" class="form-control form-control-sm" id="role" name="role" required autocomplete="off">
                             <option></option>
@@ -105,6 +105,7 @@
                 $('#frm')[0].reset(); // Reset form
                 $('#id').val(''); // Clear hidden ID
                 $("#role").val('').trigger('change');
+                $("#passwordHelpBlock").text("");
                 $('#modalLabel').text('Tambah'); // Change modal title
                 $('#saveBtn').text('Simpan'); // Change button text
                 $('#modal').modal('show'); // Show the modal
@@ -115,8 +116,14 @@
                 var id = $(this).data('id');
                 $.get('{{ url($title) }}/' + id + '/edit', function(data) {
                     $('#id').val(data.id); // Set ID in hidden input
-                    $('#title').val(data.title); // Set title in input
-                    $('#content').val(data.content); // Set content in textarea
+                    $('#name').val(data.name); // Set title in input
+                    $('#email').val(data.email); // Set title in input
+                    if(data.roles != null){
+                        $("#role").val(data.roles[0].name).trigger('change');
+                    }else{
+                        $("#role").val('').trigger('change');
+                    }
+                    $("#passwordHelpBlock").text("(kosongkan jika tidak diganti)");
                     $('#modalLabel').text('Edit'); // Change modal title
                     $('#savePostBtn').text('Perbaharui'); // Change button text
                     $('#modal').modal('show'); // Show the modal

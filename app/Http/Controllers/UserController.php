@@ -33,7 +33,7 @@ class UserController extends Controller
         ->addColumn('action', function($row) use($title) {
             $editUrl = route('users.edit', $row->id);
             $deleteUrl = route('users.destroy', $row->id);
-            return view('components.action-delete', compact('row', 'editUrl', 'deleteUrl', 'title'));
+            return view('components.actions', compact('row', 'editUrl', 'deleteUrl', 'title'));
         })
         ->make(true);
     }
@@ -50,7 +50,7 @@ public function store(Request $request)
 {
     $request->validate([
         'name' => 'required|string|max:255',
-        'email' => 'required|string|max:255|unique:users,email', // Validasi email unik
+        'email' => 'required|string|max:255|unique:users,email|nullable', // Validasi email unik
         'password' => 'required|string|min:4',
         'role' => 'required|string|in:Admin,User', // Validasi role hanya bisa "Admin" atau "User"
     ],[
@@ -113,6 +113,7 @@ public function store(Request $request)
 
 public function edit(User $user)
 {
+    $userRole = $user->roles->first() || null; // Atau $user->getRoleNames() jika Anda ingin mendapatkan lebih dari satu role
     // Mengembalikan data user dalam format JSON untuk digunakan dalam AJAX
     return response()->json($user);
 }
@@ -130,6 +131,25 @@ public function update(Request $request, User $user)
         'email' => $request->email,
         'updated_by' => Auth::id(), // Menyimpan ID pengguna yang membuat user
     ]);
+
+    if($request->password){
+        $user->update([
+            'password' => bcrypt($request->password),
+        ]);
+    }
+
+    // Update role jika role yang dipilih berbeda
+    if ($request->role != $user->roles->first()->name) {
+        // Hapus role lama
+        $user->roles()->detach();
+
+        // Menambahkan role baru
+        $role = Role::firstOrCreate(['name' => $request->role]);
+
+        $user->roles()->attach($role->id, [
+            'model_type' => get_class($user), // Menambahkan nama model secara eksplisit
+        ]);
+    }
 
     return response()->json([
         'message' => 'Data berhasil diperbaharui.', 
