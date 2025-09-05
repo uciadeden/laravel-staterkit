@@ -10,6 +10,15 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <form action="{{ route('profile.update') }}" method="POST">
         @csrf
@@ -40,7 +49,7 @@
         </div>
 
         <div class="form-group">
-            <label for="password_confirmation">Konfirmasi Password</label>
+            <label for="password_confirmation">Konfirmasi Password Lama</label>
             <input type="password" class="form-control" name="password_confirmation">
         </div>
 

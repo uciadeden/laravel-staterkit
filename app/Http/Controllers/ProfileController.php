@@ -26,15 +26,26 @@ class ProfileController extends Controller
     	$request->validate([
     		'name' => 'required|string|max:255',
     		'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-    		'password' => 'nullable|string|min:6|confirmed',
+    		'password' => 'nullable|string|min:6',
     	]);
+		    // Verifikasi password lama jika diisi
+		if ($request->filled('password_confirmation')) {
+			if (!Hash::check($request->password_confirmation, $user->password)) {
+				return back()->withErrors(['password_confirmation' => 'Konfirmasi Password Lama tidak cocok.']);
+			}
+
+			if ($request->filled('password')) {
+				$user->password = Hash::make($request->password);
+			}
+		}else{
+
+			if ($request->filled('password')) {
+				return back()->withErrors(['password_confirmation' => 'Konfirmasi Password Harus diisi.']);
+			}
+		}
 
     	$user->name = $request->name;
     	$user->email = $request->email;
-
-    	if ($request->filled('password')) {
-    		$user->password = Hash::make($request->password);
-    	}
 
     	$user->save();
 
